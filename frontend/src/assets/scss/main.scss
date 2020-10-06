@@ -1,0 +1,16 @@
+//components
+@import './components/footer';
+@import './components/header';
+@import './components/product';
+@import './components/rating';
+
+
+//pages
+@import './screens/productScreen';
+@import './screens/cartScreen';
+@import './screens/signinScreen';
+
+
+.main {
+    min-height: 80vh;
+}

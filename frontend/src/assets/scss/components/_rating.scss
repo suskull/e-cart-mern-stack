@@ -1,0 +1,9 @@
+.rating {
+    span {
+        margin-right: 1px;
+
+        &:last-child {
+            margin-left: 2px;
+        }
+    }
+}
