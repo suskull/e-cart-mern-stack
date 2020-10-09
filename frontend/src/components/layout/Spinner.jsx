@@ -1,21 +1,23 @@
-import React from 'react'
-import spinner from '../../assets/img/spinner.gif'
-export default () => {
+import React from "react";
+import { Container, Spinner } from "react-bootstrap";
 
-    const styleSpinner = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '300px'
-    }
-    return (
-        <>
-            <img 
-            src={spinner}
-            style={styleSpinner}
-            alt='Loading...'
-            />
-        </>
-    )
-}
+const Loader = () => {
+  return (
+    <Container className='spinner'>
+      <Spinner
+        animation="border"
+        role="status"
+        style={{
+          width: "100px",
+          height: "100px",
+          margin: "auto",
+          display: "block",
+        }}
+      >
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    </Container>
+  );
+};
+
+export default Loader;

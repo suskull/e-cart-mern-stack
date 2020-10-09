@@ -17,8 +17,9 @@ function App() {
         <Container className='py-3'>
           <Route path='/' exact component={HomeScreen} />
           <Route path='/login' exact component={SignInScreen} />
-          <Route path='/cart' exact component={CartScreen} />
-          <Route path='/product/:id' exact component={ProductScreen} />
+          {/* <Route path='/cart' exact component={CartScreen} /> */}
+          <Route path='/product/:id' component={ProductScreen} />
+          <Route path='/cart/:id?' component={CartScreen} />
         </Container>
         <Footer />
       </Router>

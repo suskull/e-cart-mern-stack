@@ -5,22 +5,23 @@ import Product from "../components/Product";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../actions/products";
 import Spinner from "../components/layout/Spinner";
+import Message from "../components/layout/Message";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state?.productList);
-  const { products, isLoading } = productList;
+  const { products, isLoading, error } = productList;
 
   useEffect(() => {
-    setTimeout(() => {
-       dispatch(getProducts());
-    }, 1000)
-  }, []);
+      dispatch(getProducts());
+  }, [dispatch]);
 
   return (
     <>
       {isLoading ? (
         <Spinner />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
       ) : (
         <Row>
           {products?.map((product) => (
