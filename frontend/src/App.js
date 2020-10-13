@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import SignInScreen from "./screens/SignInScreen";
 import CartScreen from "./screens/CartScreen";
 import ProductScreen from "./screens/ProductScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Container className='py-3'>
           <Route path='/' exact component={HomeScreen} />
           <Route path='/login' exact component={SignInScreen} />
+          <Route path='/signup' exact component={RegisterScreen} />
+          
           {/* <Route path='/cart' exact component={CartScreen} /> */}
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/cart/:id?' component={CartScreen} />

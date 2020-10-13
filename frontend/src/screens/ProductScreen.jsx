@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Card, Form } from "react-bootstrap";
 import { getProductById } from "../actions/products";
+import { addToCart } from "../actions/cart";
 import { useDispatch, useSelector } from "react-redux";
 
 import Rating from "../components/Rating";
 import Spinner from "../components/layout/Spinner";
 import Message from "../components/layout/Message";
+
 const ProductScreen = ({ match, history }) => {
   const [qty, setQty] = useState(0);
   console.log(qty);
@@ -20,7 +22,8 @@ const ProductScreen = ({ match, history }) => {
   }, [dispatch, match.params.id]);
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
+    // history.push(`/cart/${match.params.id}?qty=${qty}`)
+    dispatch(addToCart(match.params.id, qty))
   }
 
   return (
@@ -81,8 +84,8 @@ const ProductScreen = ({ match, history }) => {
                             {[...Array(product?.countInStock).keys()]
                               .slice(0, 10)
                               .map((x) => (
-                                <option key={x + 1} value={x + 1}>
-                                  {x + 1}
+                                <option key={x } value={x }>
+                                  {x }
                                 </option>
                               ))}
                           </Form.Control>
@@ -92,7 +95,7 @@ const ProductScreen = ({ match, history }) => {
                   )}
 
                   <ListGroup.Item>
-                    <button className="btn btn-dark btn-block" onClick={addToCartHandler}>
+                    <button className="btn btn-dark btn-block" onClick={addToCartHandler} disabled={product.countInStock === 0}>
                       Add to Cart
                     </button>
                   </ListGroup.Item>
