@@ -5,20 +5,29 @@ import FormContainer from "../components/FormContainer";
 import {useDispatch, useSelector}  from 'react-redux';
 import {userRegister} from '../actions/user'
 import { useEffect } from "react";
+import Message from "../components/layout/Message";
 
 const RegisterScreen = ({history}) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("")
 
+  const [message, setMessage] = useState("")
   const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
+  const user = useSelector(state => state.userRegister)
   const {userInfo, error, isLoading} = user
 
   const handleFormSubmit = e => {
     e.preventDefault()
-    dispatch(userRegister(name,email,password))
-    console.log('trigger')
+    if(password !== confirmPassword) {
+        setMessage('Password does not match')
+        setTimeout(() => {
+          setMessage('')
+        }, 1000)
+    } else {
+     dispatch(userRegister(name,email,password))
+    }
   }
 
   useEffect(() => {
@@ -32,7 +41,8 @@ const RegisterScreen = ({history}) => {
   return (
     <FormContainer>
       <h1>Sign up</h1>
-      
+      {message && <Message variant='danger' >{message}</Message>}
+      {error && <Message variant='danger'>{error}</Message>}
       <Form onSubmit={handleFormSubmit}>
         <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>
@@ -59,6 +69,15 @@ const RegisterScreen = ({history}) => {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Confirm your password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
       <Button type='submit' variant='primary'>Sign up</Button>

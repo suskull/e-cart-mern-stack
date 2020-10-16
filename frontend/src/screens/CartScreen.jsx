@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../actions/cart";
 
 import {Link} from 'react-router-dom'
-const CartScreen = ({ match, location }) => {
+const CartScreen = ({ match, location, history }) => {
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
   const productId = match.params.id;
 
@@ -13,7 +13,13 @@ const CartScreen = ({ match, location }) => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
+  // const {userInfo} = useSelector(state => state.userLogin)
+
   console.log(cartItems);
+
+  const handleCheckoutButton = () => {
+    history.push('/login?redirect=shipping')
+  }
 
   // useEffect(() => {
   //   if (productId) {
@@ -76,7 +82,7 @@ const CartScreen = ({ match, location }) => {
                        <h3>Total: ${cartItems.reduce((acc,item) =>( acc + item.qty * item.price), 0).toFixed(2)}</h3>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                        <Button className='btn-block' type='button' disabled={cartItems.length === 0 }>Check out</Button>
+                        <Button className='btn-block' type='button' disabled={cartItems.length === 0 } onClick={handleCheckoutButton} >Check out</Button>
                     </ListGroup.Item>
                 </ListGroup>
             </Card>

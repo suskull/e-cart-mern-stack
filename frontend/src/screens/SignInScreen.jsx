@@ -7,17 +7,17 @@ import Spinner from '../components/layout/Spinner'
 import Message from '../components/layout/Message'
 import { userLogin } from '../actions/user'
 import { useEffect } from 'react'
-const SignInScreen = ({history}) => {
+const SignInScreen = ({history, location}) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const dispatch = useDispatch()
-    const user = useSelector(state => state.user)
+    const user= useSelector(state => state.userLogin)
     const {error, isLoading, userInfo} = user
 
-    console.log(user)
-    console.log('------',error)
+    const redirect = location.search ? location.search.split('=')[1] : '/'
+
     const handleFormSubmit = e =>  {
         e.preventDefault();
         dispatch(userLogin(email, password))
@@ -28,10 +28,10 @@ const SignInScreen = ({history}) => {
     // },500)
 
     useEffect(() => {
-        if(userInfo) {
-            history.push('/')
-        }
-    }, [userInfo])
+        if (userInfo) {
+            history.push(redirect)
+          }
+    }, [userInfo, history, redirect])
 
 
 

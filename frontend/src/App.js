@@ -9,6 +9,9 @@ import SignInScreen from "./screens/SignInScreen";
 import CartScreen from "./screens/CartScreen";
 import ProductScreen from "./screens/ProductScreen";
 import RegisterScreen from "./screens/RegisterScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import { ShippingScreen } from "./screens/ShippingScreen";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -17,12 +20,13 @@ function App() {
         <Header />
         <Container className='py-3'>
           <Route path='/' exact component={HomeScreen} />
-          <Route path='/login' exact component={SignInScreen} />
-          <Route path='/signup' exact component={RegisterScreen} />
-          
-          {/* <Route path='/cart' exact component={CartScreen} /> */}
+          <Route path='/login'  component={SignInScreen} />
+          <Route path='/signup' component={RegisterScreen} />
+          <Route path='/profile'  component={ProfileScreen} />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
+          <Route path='/shipping' component={ShippingScreen}/>
+          {/* <Route component={NotFound}/> */}
         </Container>
         <Footer />
       </Router>
