@@ -50,7 +50,7 @@ const SignInScreen = ({history, location}) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type='password' placeholder='Enter you password' value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
                 </Form.Group>
-                <Button type='submit' variant='primary' rounded>
+                <Button type='submit' variant='primary' rounded='true'>
                    Sign Up 
                 </Button>
             </Form>

@@ -15,12 +15,13 @@ import {
   USER_UPDATE_FAILURE
 } from "../actions/types";
 
-export const userLoginReducer = (state = {}, action) => {
+export const userLoginReducer = (state = { }, action) => {
   switch (action.type) {
     case USER_LOGIN:
       return {
         ...state,
         isLoading: true,
+        // isAuthenticated: false
       };
 
     case USER_LOGIN_SUCCESS:
@@ -28,12 +29,14 @@ export const userLoginReducer = (state = {}, action) => {
         ...state,
         userInfo: action.payload,
         isLoading: false,
+        // isAuthenticated: true
       };
     case USER_LOGIN_FAILURE:
       return {
         ...state,
         error: action.payload,
         isLoading: false,
+        // isAuthenticated: false
       };
     case USER_LOGOUT:
       return {};

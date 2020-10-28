@@ -12,7 +12,9 @@ import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import { ShippingScreen } from "./screens/ShippingScreen";
 import NotFound from "./components/NotFound";
-
+import PaymentScreen from "./screens/PaymentScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import PrivateRoute from './components/PrivateRoute'
 function App() {
   return (
     <>
@@ -25,9 +27,15 @@ function App() {
           <Route path='/profile'  component={ProfileScreen} />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
-          <Route path='/shipping' component={ShippingScreen}/>
+          <PrivateRoute path='/shipping' component={ShippingScreen}/>
+          <PrivateRoute path='/payment' component={PaymentScreen}/>
+          <PrivateRoute path='/placeorder' component={PlaceOrderScreen}/>
+          
+
           {/* <Route component={NotFound}/> */}
         </Container>
+  
+
         <Footer />
       </Router>
     </>

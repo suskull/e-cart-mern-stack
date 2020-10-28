@@ -22,6 +22,10 @@ const userSchema = mongoose.Schema({
         required: true,
         default: false
     },
+    // isAuthenticated: {
+    //     type: Boolean,
+    //     default: false
+    // }
 }, {
     timestamps: true
 })
